@@ -1,0 +1,25 @@
+{% extends 'Header.html' %}
+
+{% block head %}
+<title>Admin Login</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4" style="background-color:white;opacity:0.7;padding:20px;border-radius:15px;">
+<form method="post" action="/CheckLogin/">
+{% csrf_token %}
+<div class="row"><div class="col" style="font-size:40px;text-align:center;"><u>Administrator Login</u></div></div><br/><br/>
+<div class="row"><div class="col"><input type="text" class="form-control" placeholder="Username" name="username" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row"><div class="col"><input type="password" class="form-control" placeholder="Password" name="password" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row"><div class="col"><button type="submit" class="btn btn-success" style="width:48%;">Login</button>&emsp;<button type="Reset" class="btn btn-danger" style="width:48%;">Clear</button></div></div><br/>
+<div class="row"><div class="col"><a href="/">Back to Site</a></div></div><br/>
+</form>
+</div>
+<div class="col-md-4"></div>
+</div>
+</div>
+{% endblock %}

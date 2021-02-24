@@ -1,0 +1,25 @@
+{% extends 'InnerHeader.html' %}
+
+{% block head %}
+<title>{{uname}}</title>
+{% endblock %}
+
+{% block body %}
+{% for i in data %}
+<div class="row">
+<div class="col-md-4">
+<img src="{{i.profile.url}}" width="100%" height="300px" style="border-radius:50%;"/><br/><br/>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-7" style="font-size:25px;color:brown;">
+> Name : <u>{{i.name}}</u><br/><br/>
+> Date of Birth  : <u>{{i.dob}}</u><br/><br/>
+> Email : <u>{{i.email}}</u><br/><br/>
+> Mobile Number : <u>{{i.mobile}}</u><br/><br/>
+> Username : <u>{{i.username}}</u><br/><br/>
+> Blood Group : <u>{{i.bldgrp}}</u><br/><br/>
+> Address : <u>{{i.address}}</u><br/><br/>
+</div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'InnerHeader.html' %}
+
+{% block head %}
+<title>{{uname}}</title>
+{% endblock %}
+
+{% block body %}
+<h2><u>Request Sent</u></h2>
+{% for i in data1 %}
+<div class="row" style="font-size:20px;">
+<div class="col">
+<form method="post" action="/ViewUser/">
+{% csrf_token %}
+<input type="text" value="{{i.reciever}}" name="username" hidden>
+Your request for {{i.quantity}} ML {{i.bldgrp}} blood from<button type="submit" class="btn btn-link" style="font-size:20px;color:black;text-decoration:underline;">{{i.reciever}}</button>is {{i.status}}
+</form>
+</div>
+</div>
+<hr/>
+{% endfor %}
+{% for i in data2 %}
+<div class="row" style="font-size:20px;">
+<div class="col">
+Your request for {{i.quantity}} ML {{i.bldgrp}} blood from <a href="/BloodBank" style="font-size:20px;color:black;text-decoration:underline;">bank</a> is {{i.status}}
+</div>
+</div>
+<hr/>
+{% endfor %}
+{% endblock %}

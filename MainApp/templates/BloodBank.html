@@ -1,0 +1,65 @@
+{% extends 'InnerHeader.html' %}
+
+{% block head %}
+<title>{{uname}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+<div class="col">
+<h2 align="center"><u>{{bankname}}</u></h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Blood Group</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for i in data %}
+    <tr>
+      <td>{{i.bldgrp}}</td>
+      <td>{{i.status}}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+<div class="col-md-6">
+<div  style="font-size:25px;color:brown;">
+Mobile Number : {{mobile}}<br/>
+Email Id : {{email}}
+</div>
+<form method="post" action="/ProcessBankRequest/">
+{% csrf_token %}
+<label>Blood Group</label>
+<select class="form-control" name="bldgrp" style="border:none;border-bottom:2px solid black;">
+<option value="O-Positive">O-Positive</option>
+<option value="O-Negative">O-Negative</option>
+<option value="A-Positive">A-Positive</option>
+<option value="A-Negative">A-Negative</option>
+<option value="B-Positive">B-Positive</option>
+<option value="B-Negative">B-Negative</option>
+<option value="AB-Positive">AB-Positive</option>
+<option value="AB-Negative">AB-Negative</option>
+</select>
+<br/>
+<label>Quantity of Blood</label>
+<select class="form-control" name="quantity" style="border:none;border-bottom:2px solid black;">
+<option value="25">25 ML</option>
+<option value="50">50 ML</option>
+<option value="75">75 ML</option>
+<option value="100">100 ML</option>
+<option value="125">125 ML</option>
+<option value="150">150 ML</option>
+</select>
+<br/>
+<button type="submit" class="btn btn-success" style="width:100%;">Request for Blood</button>
+</form>
+</div>
+</div>
+{% endblock %}

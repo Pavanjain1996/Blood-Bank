@@ -1,0 +1,47 @@
+{% extends 'Header.html' %}
+
+{% block head %}
+<title>Register</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+<br/><br/>
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4" style="background-color:white;opacity:0.7;padding:20px;border-radius:15px;">
+<form method="post" action="/CompleteRegistration/" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="row"><div class="col" style="font-size:40px;text-align:center;"><u>Register Here</u></div></div><br/><br/>
+<div class="row"><div class="col"><input type="text" class="form-control" placeholder="Name" name="name" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row"><div class="col"><input type="date" class="form-control" placeholder="Date of birth" name="dob" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row"><div class="col"><input type="email" class="form-control" placeholder="Email-ID" name="email" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row"><div class="col"><input type="number" class="form-control" placeholder="Mobile Number" name="mobile" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row"><div class="col"><input type="text" class="form-control" placeholder="Username" name="username" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row"><div class="col"><input type="password" class="form-control" placeholder="Password" name="password" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row">
+<div class="col">
+<label for="sel1">Select Blood Group</label>
+<select class="form-control" name="bldgrp" style="border:none;border-bottom:2px solid black;">
+<option value="O-Positive">O-Positive</option>
+<option value="O-Negative">O-Negative</option>
+<option value="A-Positive">A-Positive</option>
+<option value="A-Negative">A-Negative</option>
+<option value="B-Positive">B-Positive</option>
+<option value="B-Negative">B-Negative</option>
+<option value="AB-Positive">AB-Positive</option>
+<option value="AB-Negative">AB-Negative</option>
+</select>
+</div>
+</div><br/>
+<div class="row"><div class="col"><label>Upload a Profile Picture</label><input type="file" class="form-control" name="profile" accept="image/*" style="border:none;border-bottom:2px solid black;" required></div></div><br/>
+<div class="row"><div class="col"><textarea class="form-control" name="address" placeholder="Address" style="border:none;border-bottom:2px solid black;" required></textarea></div></div><br/>
+<div class="row"><div class="col"><button type="submit" class="btn btn-success" style="width:48%;">Register</button>&emsp;<button type="Reset" class="btn btn-danger" style="width:48%;">Clear</button></div></div><br/>
+</form>
+<a href="/">Back to Login</a>
+</div>
+<div class="col-md-4"></div>
+</div>
+<br/><br/>
+</div>
+{% endblock %}

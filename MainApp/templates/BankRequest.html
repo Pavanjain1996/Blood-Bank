@@ -1,0 +1,47 @@
+{% extends 'AdminHeader.html' %}
+
+{% block head %}
+<title>{{adminuname}}</title>
+{% endblock %}
+
+{% block body %}
+<h2><u>Request Recieved</u></h2>
+{% for i in data %}
+<div class="row"  style="font-size:20px;">
+<div class="col-md-10">
+<form method="post" action="/ViewAdminUser/">
+{% csrf_token %}
+<input type="text" value="{{i.sender}}" name="username" hidden />
+You have a request from<button type="submit" class="btn btn-link" style="font-size:20px;color:black;text-decoration:underline;">{{i.sender}}</button>for {{i.quantity}} ML {{i.bldgrp}} blood.
+</form>
+</div>
+<div class="col-md-1">
+<form method="post" action="/AcceptBankRequest/">
+{% csrf_token %}
+<input type="number" value="{{i.id}}" name="id" hidden>
+<button type="submit" class="btn btn-default" style="border-radius:50%;background-color:red;"><i class="fa fa-check" style="font-size:20px;"></i></button>
+</form>
+</div>
+<div class="col-md-1">
+<form method="post" action="/RejectBankRequest/">
+{% csrf_token %}
+<input type="number" value="{{i.id}}" name="id" hidden>
+<button type="submit" class="btn btn-default" style="border-radius:50%;background-color:red;"><i class="fa fa-times" style="font-size:20px;"></i></button>
+</form>
+</div>
+</div>
+<hr/>
+{% endfor %}
+{% for i in data1 %}
+<div class="row"  style="font-size:20px;">
+<div class="col-md-10">
+<form method="post" action="/ViewAdminUser/">
+{% csrf_token %}
+<input type="text" value="{{i.sender}}" name="username" hidden />
+Request from<button type="submit" class="btn btn-link" style="font-size:20px;color:black;text-decoration:underline;">{{i.sender}}</button>for {{i.quantity}} ML {{i.bldgrp}} blood is {{i.status}} by you
+</form>
+</div>
+</div>
+<hr/>
+{% endfor %}
+{% endblock %}

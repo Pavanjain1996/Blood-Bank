@@ -1,0 +1,59 @@
+{% extends 'AdminHeader.html' %}
+
+{% block head %}
+<title>{{adminuname}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+<div class="col">
+<h2 align="center"><u>{{bankname}}</u></h2>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Blood Group</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for i in data %}
+    <tr>
+      <td>{{i.bldgrp}}</td>
+      <td>{{i.status}}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+<div class="col-md-6" style="font-size:25px;color:black;">
+Mobile Number : {{mobile}}<br/>
+Email Id : {{email}}
+<form method="post" action="/AlterStock/">
+{% csrf_token %}
+<label>Blood Group</label>
+<select class="form-control" name="bldgrp" style="border:none;border-bottom:2px solid black;">
+<option value="O-Positive">O-Positive</option>
+<option value="O-Negative">O-Negative</option>
+<option value="A-Positive">A-Positive</option>
+<option value="A-Negative">A-Negative</option>
+<option value="B-Positive">B-Positive</option>
+<option value="B-Negative">B-Negative</option>
+<option value="AB-Positive">AB-Positive</option>
+<option value="AB-Negative">AB-Negative</option>
+</select>
+<br/>
+<label>Status</label>
+<select class="form-control" name="status" style="border:none;border-bottom:2px solid black;">
+<option value="Available">Available</option>
+<option value="Unavailable">Unavailable</option>
+</select>
+<br/>
+<button type="submit" class="btn btn-success" style="width:100%;">Update</button>
+</form>
+</div>
+</div>
+{% endblock %}

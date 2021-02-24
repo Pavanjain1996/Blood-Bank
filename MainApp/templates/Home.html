@@ -1,0 +1,109 @@
+{% extends 'InnerHeader.html' %}
+
+{% block head %}
+<title>{{uname}}</title>
+{% endblock %}
+
+{% block body %}
+{% for i in data %}
+<div class="row">
+<div class="col-md-4">
+<img src="{{i.profile.url}}" width="100%" height="300px" style="border-radius:50%;border:2px solid black;"/><br/><br/>
+<button class="btn btn-link" style="color:black;font-size:20px;text-decoration:none;" onclick="hideshowpic()" id="picbtn">&gt; Edit Profile Picture</button>
+<div id="pichideshow" style="display:none;padding:20px;">
+<form method="post" enctype="multipart/form-data" action="/UpdateProfile/">
+{% csrf_token %}
+<input type="file" class="form-control" name="profile" accept="image/*" style="border:none;border-bottom:2px solid black;" required>
+<button type="submit" class="btn btn-info" style="width:100%;">Update Profile Picture</button>
+</form>
+</div>
+<button class="btn btn-link" style="color:black;font-size:20px;text-decoration:none;" onclick="hideshowpass()"id="passbtn">&gt; Reset Password</button>
+<div id="passhideshow" style="display:none;padding:20px;">
+<form method="post" action="/ResetPassword/">
+{% csrf_token %}
+<input type="password" class="form-control" name="password" placeholder="password" style="border:none;border-bottom:2px solid black;" required>
+<button type="submit" class="btn btn-info" style="width:100%;">Change Password</button>
+</form>
+</div>
+<button class="btn btn-link" style="color:black;font-size:20px;text-decoration:none;" onclick="hideshowcontact()"id="contactbtn">&gt; Edit Contact Details</button>
+<div id="contacthideshow" style="display:none;padding:20px;">
+<form method="post" action="/EditContact/">
+{% csrf_token %}
+<input type="email" class="form-control" name="email" placeholder="Email-ID" style="border:none;border-bottom:2px solid black;" required>
+<input type="number" class="form-control" name="mobile" placeholder="Mobile Number" style="border:none;border-bottom:2px solid black;" required>
+<button type="submit" class="btn btn-info" style="width:100%;">Update Details</button>
+</form>
+</div>
+<button class="btn btn-link" style="color:black;font-size:20px;text-decoration:none;" onclick="hideshowaddress()"id="addressbtn">&gt; Edit Address</button>
+<div id="addresshideshow" style="display:none;padding:20px;">
+<form method="post" action="/EditAddress/">
+{% csrf_token %}
+<textarea class="form-control" name="address" placeholder="Address" style="border:none;border-bottom:2px solid black;" required></textarea>
+<button type="submit" class="btn btn-info" style="width:100%;">Update Address</button>
+</form>
+</div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-7" style="font-size:25px;">
+> Name : <u>{{i.name}}</u><br/><br/>
+> Date of Birth  : <u>{{i.dob}}</u><br/><br/>
+> Email : <u>{{i.email}}</u><br/><br/>
+> Mobile Number : <u>{{i.mobile}}</u><br/><br/>
+> Username : <u>{{i.username}}</u><br/><br/>
+> Blood Group : <u>{{i.bldgrp}}</u><br/><br/>
+> Address : <u>{{i.address}}</u><br/><br/>
+</div>
+</div>
+{% endfor %}
+<script>
+function hideshowpic(){
+	k=document.getElementById('pichideshow');
+	btn=document.getElementById('picbtn');
+	if(k.style.display == "block"){
+		k.style.display="none";
+		btn.innerHTML="&gt; Edit Profile Picture";
+		
+	}
+	else{
+		k.style.display="block";
+		btn.innerHTML="&uarr; Edit Profile Picture";
+	}
+}
+function hideshowpass(){
+	k=document.getElementById('passhideshow');
+	btn=document.getElementById('passbtn');
+	if(k.style.display == "block"){
+		k.style.display="none";
+		btn.innerHTML="&gt; Reset Password";
+	}
+	else{
+		k.style.display="block";
+		btn.innerHTML="&uarr; Reset Password";
+	}
+}
+function hideshowcontact(){
+	k=document.getElementById('contacthideshow');
+	btn=document.getElementById('contactbtn');
+	if(k.style.display == "block"){
+		k.style.display="none";
+		btn.innerHTML="&gt; Edit Contact Details";
+	}
+	else{
+		k.style.display="block";
+		btn.innerHTML="&uarr; Edit Contact Details";
+	}
+}
+function hideshowaddress(){
+	k=document.getElementById('addresshideshow');
+	btn=document.getElementById('addressbtn');
+	if(k.style.display == "block"){
+		k.style.display="none";
+		btn.innerHTML="&gt; Edit Address";
+	}
+	else{
+		k.style.display="block";
+		btn.innerHTML="&uarr; Edit Address";
+	}
+}
+</script>
+{% endblock %}
